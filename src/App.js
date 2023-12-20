@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.css";
+import WeatherForm from "./components/WeatherForm.js";
 
 function App() {
+  const [city, setCity] = useState("");
+  const handleSubmit = (location) => {
+    setCity(location);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <section className="weather-form">
+        <h1 className="page-title">Current Weather</h1>
+        <WeatherForm onSubmit={handleSubmit} />
+      </section>
+      <section className="main-content">
+        <p>Main content goes here</p>
+      </section>
     </div>
   );
 }
