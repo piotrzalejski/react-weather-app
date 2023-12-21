@@ -16,7 +16,8 @@ const PromptToLocation = (prompt) => {
         type: "function",
         function: {
           name: "displayData",
-          description: "Get current weather with given location",
+          description:
+            "Get current weather with given location, ignore trailing whitespaces",
           parameters: {
             type: "object",
             properties: {
@@ -38,7 +39,8 @@ const PromptToLocation = (prompt) => {
               },
               unit: {
                 type: "string",
-                description: "location unit: metric or imperial",
+                description:
+                  "location unit: US = imerial, other countries = metric",
               },
             },
             required: ["country", "countryCode", "state", "city", "unit"],
@@ -68,8 +70,15 @@ const PromptToLocation = (prompt) => {
       );
       console.log(promptRes);
 
+      const locationString = () => {
+        if (promptRes.countryCode == "US") {
+          return `${promptRes.city},${promptRes.state},${promptRes.countryCode}`;
+        }
+        return `${promptRes.city},${promptRes.countryCode}`;
+      };
+
       const promptData = {
-        locationString: `${promptRes.city}, ${promptRes.countryCode}`,
+        locationString: locationString(),
         units: promptRes.unit,
         country: promptRes.country,
         state: promptRes.state,

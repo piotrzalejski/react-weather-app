@@ -38,6 +38,10 @@
     color: #fff;
 }
 
+.locationform-elements input[type="submit"]:hover{
+    background-color: #057472;
+}
+
 .error {
     color:red;
     margin-top: 10px;
