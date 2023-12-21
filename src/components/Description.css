@@ -1,0 +1,14 @@
+.description-res {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    padding: 0.6rem 1.6rem;
+    border: 0.3rem dashed #319795;
+    border-radius: 1rem;
+}
+
+.description-text {
+    grid-row: 1/-1;
+    grid-column: 1/-1;
+    font-size: 1.3rem;;
+}

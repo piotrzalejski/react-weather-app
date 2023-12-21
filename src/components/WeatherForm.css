@@ -24,9 +24,16 @@
     padding: 1rem;
     border-radius: .75rem;
     border: none;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.3);
     margin-block: 0.5rem 1rem;
-    font-size: 2rem;
+    font-size: 1.6rem;
+    color: white;
+}
+
+.locationform-elements input[type="text"]:-webkit-autofill {
+  content: ''; /* Empty content */
+  display: block; /* Make it a block element */
+  background-color: transparent; /* Set the desired background color */
 }
 
 .locationform-elements input[type="submit"]{
@@ -48,8 +55,8 @@
 }
 
 .instructions {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     margin-top: 10px;
     text-align: center;
-    color: rgb(0 0 0 / .5);
+    color: rgb(255 255 255 / .5);
 }

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-// festch weather data from OpenWeatherMapAPI
+// fetch weather data from OpenWeatherMapAPI
 const WeatherData = async (locationData) => {
   try {
     // update to eventually take city, state, country code
