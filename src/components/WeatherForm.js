@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import "./WeatherForm.css";
-import WeatherData from "./WeatherData.js";
+//import WeatherData from "./WeatherData.js";
 
 function WeatherForm({ onSubmit }) {
   const [inputLoc, setInputLoc] = useState("");
@@ -9,15 +9,7 @@ function WeatherForm({ onSubmit }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    try {
-      const data = await WeatherData(inputLoc);
-      setWeatherResult(data);
-      console.log(JSON.stringify(weatherResult));
-    } catch (err) {
-      console.error("Error fetching weather data: ", err);
-      setWeatherResult(null);
-    }
+    onSubmit(inputLoc);
   };
 
   return (
