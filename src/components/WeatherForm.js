@@ -5,7 +5,6 @@ import "./WeatherForm.css";
 
 function WeatherForm({ onSubmit }) {
   const [inputLoc, setInputLoc] = useState("");
-  const [weatherResult, setWeatherResult] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

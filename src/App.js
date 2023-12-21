@@ -63,7 +63,7 @@ function App() {
     if (weatherDesc && !weatherDescLoading) {
       setWeatherDescLoading(false);
     }
-  }, [weatherDesc]);
+  }, [weatherDesc, weatherDescLoading]);
 
   const handleSubmit = async (location) => {
     setPrompt(location);

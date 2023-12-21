@@ -71,7 +71,7 @@ const PromptToLocation = (prompt) => {
       console.log(promptRes);
 
       const locationString = () => {
-        if (promptRes.countryCode == "US") {
+        if (promptRes.countryCode === "US") {
           return `${promptRes.city},${promptRes.state},${promptRes.countryCode}`;
         }
         return `${promptRes.city},${promptRes.countryCode}`;
