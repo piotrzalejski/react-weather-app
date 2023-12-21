@@ -26,9 +26,9 @@ function WeatherForm({ onSubmit }) {
         <input type="submit" value="Submit" />
       </div>
       <p className="instructions">
-        USA: enter "city,2-letter state code"
+        USA enter: "city, state"
         <br />
-        Other: enter" city,2-letter country code"
+        Other enter: "city,country"
       </p>
     </form>
   );
