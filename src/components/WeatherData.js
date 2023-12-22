@@ -2,8 +2,19 @@ import PropTypes from "prop-types";
 
 // fetch weather data from OpenWeatherMapAPI
 const WeatherData = async (locationData) => {
+  if (
+    locationData === undefined ||
+    locationData === null ||
+    locationData == {} ||
+    locationData.cod == "404" ||
+    !locationData.locationString
+  ) {
+    console.log("WeatherData OPWM: Skipping API Call. Did not recive location");
+    console.log("Issue with locationData: ", locationData);
+    return locationData;
+  }
   try {
-    // update to eventually take city, state, country code
+    console.log("received location data");
     const res = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${locationData.locationString}&appid=${process.env.REACT_APP_OWM_API}`
     );

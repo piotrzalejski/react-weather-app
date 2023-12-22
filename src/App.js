@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./App.css";
 import WeatherForm from "./components/WeatherForm.js";
 import PromptToLocation from "./components/PromptToLocation.js";
@@ -16,9 +16,13 @@ function App() {
   const [weatherDataLoading, setWeatherDataLoading] = useState(false);
   const [weatherDescLoading, setWeatherDescLoading] = useState(false);
 
+  const initialMount = useRef(true);
+
   useEffect(() => {
     const fetchData = async () => {
-      if (!prompt) return;
+      if (!prompt || initialMount.current) {
+        return;
+      }
 
       try {
         setWeatherDataLoading(true);
@@ -38,15 +42,24 @@ function App() {
   }, [prompt]);
 
   useEffect(() => {
-    console.log("promptData: ", promptData);
     if (promptData && promptData.units) {
       setUnits(promptData.units);
     }
   }, [promptData]);
 
   useEffect(() => {
+    if (initialMount.current) {
+      initialMount.current = false;
+      return;
+    }
     const fetchDesc = async () => {
-      if (weatherData && !weatherDataLoading) {
+      if (
+        !weatherData ||
+        Object.keys(weatherData).length === 0 ||
+        weatherDataLoading
+      ) {
+        return;
+      } else {
         console.log("Weather Data: ", weatherData);
 
         setWeatherDescLoading(true);
@@ -86,7 +99,10 @@ function App() {
         )}
       </section>
       <section className="main-content">
-        {Object.keys(promptData).length > 0 && !weatherDataLoading ? (
+        {promptData &&
+        typeof promptData === "object" &&
+        Object.keys(promptData).length > 0 &&
+        !weatherDataLoading ? (
           <WeatherCard
             data={weatherData}
             units={units}

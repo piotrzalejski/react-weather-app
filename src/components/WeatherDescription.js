@@ -1,11 +1,15 @@
 import PropTypes from "prop-types";
 
 const WeatherDescription = (weatherData) => {
-  if (Object.keys(weatherData).length === 0) {
-    console.log("No weather data provided. Skipping API response");
-    return null;
+  if (
+    Object.keys(weatherData).length === 0 ||
+    typeof weatherData !== "object"
+  ) {
+    console.log("No weather data provided. Skipping API response.");
+    console.log("WeatherDescription - issue with weatherData: ", weatherData);
+    return weatherData;
   } else {
-    const tempKelvin = weatherData.main?.temp;
+    const tempKelvin = weatherData.main.temp;
     const tempCelsius = tempKelvin - 273.15;
     const tempFahrenheit = (tempKelvin - 273.15) * 1.8 + 32;
 
