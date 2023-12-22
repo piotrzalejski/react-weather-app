@@ -5,8 +5,8 @@ const WeatherData = async (locationData) => {
   if (
     locationData === undefined ||
     locationData === null ||
-    locationData == {} ||
-    locationData.cod == "404" ||
+    Object.keys(locationData).length === 0 ||
+    locationData.cod === "404" ||
     !locationData.locationString
   ) {
     console.log("WeatherData OPWM: Skipping API Call. Did not recive location");

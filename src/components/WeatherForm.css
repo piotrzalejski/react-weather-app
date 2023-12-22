@@ -30,12 +30,6 @@
     color: white;
 }
 
-.locationform-elements input[type="text"]:-webkit-autofill {
-  content: ''; /* Empty content */
-  display: block; /* Make it a block element */
-  background-color: transparent; /* Set the desired background color */
-}
-
 .locationform-elements input[type="submit"]{
     padding: 0.8rem 1.4rem;
     font-size: 2rem;

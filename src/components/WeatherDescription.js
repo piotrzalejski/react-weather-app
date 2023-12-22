@@ -9,7 +9,7 @@ const WeatherDescription = (weatherData) => {
     console.log("WeatherDescription - issue with weatherData: ", weatherData);
     return weatherData;
   } else {
-    const tempKelvin = weatherData.main.temp;
+    const tempKelvin = weatherData.main?.temp;
     const tempCelsius = tempKelvin - 273.15;
     const tempFahrenheit = (tempKelvin - 273.15) * 1.8 + 32;
 
