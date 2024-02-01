@@ -1,19 +1,19 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 const WeatherDescription = (weatherData) => {
   if (
     Object.keys(weatherData).length === 0 ||
-    typeof weatherData !== "object"
+    typeof weatherData !== 'object'
   ) {
-    console.log("No weather data provided. Skipping API response.");
-    console.log("WeatherDescription - issue with weatherData: ", weatherData);
+    console.log('No weather data provided. Skipping API response.');
+    console.log('WeatherDescription - issue with weatherData: ', weatherData);
     return weatherData;
   } else {
     const tempKelvin = weatherData.main?.temp;
     const tempCelsius = tempKelvin - 273.15;
     const tempFahrenheit = (tempKelvin - 273.15) * 1.8 + 32;
 
-    const url = "https://api.openai.com/v1/chat/completions";
+    const url = 'https://api.openai.com/v1/chat/completions';
 
     const sysMsg = `
       In a conversational friendly tone, answer the [Question] based on the [Weather Data].
@@ -28,23 +28,26 @@ const WeatherDescription = (weatherData) => {
     )}°C (${tempFahrenheit.toFixed(
       2
     )}°F), so it's a pleasant day. You might want to wear a light jacket and bring sunglasses."
+
+    Example Response with wrong units:
+    "The current temperature in Chicago is 280.06°F (138.93°C), so it's quite chilly. You might want to wear a warm coat and bring a hat and gloves to stay cozy."
     `;
 
     const prompt = `Question: What is weather like? Weather Data: ${JSON.stringify(
       weatherData
     )}`;
 
-    console.log("weather propmpt : ", prompt);
+    console.log('weather propmpt : ', prompt);
 
     const data = {
-      model: "gpt-3.5-turbo",
+      model: 'gpt-3.5-turbo',
       messages: [
         {
-          role: "system",
+          role: 'system',
           content: sysMsg,
         },
         {
-          role: "user",
+          role: 'user',
           content: prompt,
         },
       ],
@@ -53,10 +56,10 @@ const WeatherDescription = (weatherData) => {
     const params = {
       headers: {
         Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API}`,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
-      method: "POST",
+      method: 'POST',
     };
 
     const fetchData = async (url, params) => {
@@ -69,7 +72,7 @@ const WeatherDescription = (weatherData) => {
 
         return promptRes;
       } catch (error) {
-        console.log("Error:", error);
+        console.log('Error:', error);
       }
     };
 
